@@ -2,7 +2,7 @@ class Operators
 {
 	public static void main(String args[]){
 		
-	int num1, num2, result;
+	int num1, num2;
 	num1=5;
 	num2=3;
 	System.out.println((num1|num2));
