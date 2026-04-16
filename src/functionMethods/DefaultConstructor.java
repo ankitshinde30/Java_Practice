@@ -7,10 +7,16 @@ class Student{
 	String email;
 	
 	
-	public Student() {
+	public Student() {//Default Constructor
 		id=100;
 		name="Amit";
 		email="amit@gmail.com";
+	}
+	
+	public Student(int sid,String n, String e) {//Parameterized Constructor
+		id=sid;
+		n=name;
+		e=email;
 	}
 	
 	public void display() {
@@ -26,6 +32,10 @@ public class DefaultConstructor {
 		
 		Student s1 = new Student();
 		s1.display();
+		Student s2 = new Student(101,"Omkar","Omkar@gmail.com");
+		s2.display();
+		Student s3 = new Student(102,"Kaushal","Kaushal@gmail.com");
+		s3.display();
 
 	}
 
