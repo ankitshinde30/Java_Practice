@@ -15,8 +15,14 @@ class Student{
 	
 	public Student(int sid,String n, String e) {//Parameterized Constructor
 		id=sid;
-		n=name;
-		e=email;
+		name=n;
+		email=e;
+	}
+	
+	public Student(Student s) {//Copy Constructor
+		id=s.id;
+		name=s.name;
+		email=s.email;
 	}
 	
 	public void display() {
@@ -31,12 +37,14 @@ public class DefaultConstructor {
 	public static void main(String[] args) {
 		
 		Student s1 = new Student();
-		s1.display();
+		s1.display();//Default Constructor
 		Student s2 = new Student(101,"Omkar","Omkar@gmail.com");
-		s2.display();
+		s2.display();//Parameterized Constructor
 		Student s3 = new Student(102,"Kaushal","Kaushal@gmail.com");
-		s3.display();
+		s3.display();//Parameterized Constructor
 
+		Student s4 = new Student(s3);
+		s4.display();//Copy Constructor
 	}
 
 }
