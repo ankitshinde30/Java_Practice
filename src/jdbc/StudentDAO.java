@@ -5,7 +5,7 @@ import java.util.*;
 
 public class StudentDAO {
 
-    int id, age;
+    int id;
     String name, email, city;
 
     Scanner sc = new Scanner(System.in);
@@ -22,9 +22,6 @@ public class StudentDAO {
         System.out.println("Enter Student Email");
         email = sc.next();
 
-        System.out.println("Enter Student age");
-        age = sc.nextInt();
-
         System.out.println("Enter Student City");
         city = sc.next();
 
@@ -32,16 +29,17 @@ public class StudentDAO {
         Connection conn = DBUtil.getConnection();
 
         // SQL Insert Query
-        PreparedStatement ps = conn.prepareStatement(
-            "insert into student values(?,?,?,?,?)"
-        );
+//        PreparedStatement ps = conn.prepareStatement(
+//            "insert into students values(?,?,?,?)"
+//        );
+        
+        CallableStatement ps = conn.prepareCall("{call Insert_record(?,?,?,?)}");
 
         // Set values in query
         ps.setInt(1, id);
         ps.setString(2, name);
         ps.setString(3, email);
-        ps.setInt(4, age);
-        ps.setString(5, city);
+        ps.setString(4, city);
 
         // Execute query
         int result = ps.executeUpdate();
@@ -67,9 +65,6 @@ public class StudentDAO {
         System.out.println("Enter Student Email");
         email = sc.next();
 
-        System.out.println("Enter Student age");
-        age = sc.nextInt();
-
         System.out.println("Enter Student City");
         city = sc.next();
 
@@ -77,15 +72,15 @@ public class StudentDAO {
 
         // Correct SQL Query
         PreparedStatement ps = conn.prepareStatement(
-            "update student set sname=?, age=?, email=?, city=? where id=?"
+            "update students set stud_name=?, stud_email=?, stud_city=? where stud_id=?"
         );
 
         // Set values correctly
         ps.setString(1, name);
-        ps.setInt(2, age);
-        ps.setString(3, email);
-        ps.setString(4, city);
-        ps.setInt(5, id);
+        ps.setString(2, email);
+        ps.setString(3, city);
+        ps.setInt(4, id);
+        
 
         int result = ps.executeUpdate();
 
@@ -107,7 +102,7 @@ public class StudentDAO {
         Connection conn = DBUtil.getConnection();
 
         PreparedStatement ps = conn.prepareStatement(
-            "delete from student where id=?"
+            "delete from students where stud_id=?"
         );
 
         ps.setInt(1, id);
@@ -130,12 +125,12 @@ public class StudentDAO {
 
         Statement stat = conn.createStatement();
 
-        ResultSet rs = stat.executeQuery("select * from student");
+        ResultSet rs = stat.executeQuery("select * from students");
 
         // Loop through results
         while (rs.next()) {
             System.out.println(
-                rs.getInt(1) + "\t " + rs.getString(2)
+                rs.getInt(1) + "\t " + rs.getString(2)+ "\t " + rs.getString(3)+ "\t " + rs.getString(4)
             );
         }
 
