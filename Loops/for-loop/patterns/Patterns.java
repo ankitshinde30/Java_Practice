@@ -43,8 +43,8 @@ public class Patterns {
 
 
     public static void main(String[] args) {
-        // inverted_rotated_half_pyramid(5);
-        // floyd_triangle(5);
+        inverted_rotated_half_pyramid(5);
+        floyd_triangle(5);
         zero_one_triangle_pattern(5);
         
     }
