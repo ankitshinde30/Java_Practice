@@ -72,12 +72,25 @@ public class Patterns {
 
     }
 
+    public static void solid_rhombus(int n){
+        for(int i=1; i<=n;i++){
+            for(int j=1;j<=(n-i);j++){
+                System.out.print("  ");
+            }
+            for(int j=1;j<=n;j++){
+                System.out.print("* ");
+            }
+            System.out.println();
+        }
+    }
+
 
     public static void main(String[] args) {
         // inverted_rotated_half_pyramid(5);
         // floyd_triangle(5);
         // zero_one_triangle_pattern(5);
-        Butterfly_pattern(4);
+        // Butterfly_pattern(4);
+        solid_rhombus(5);
         
     }
 }
