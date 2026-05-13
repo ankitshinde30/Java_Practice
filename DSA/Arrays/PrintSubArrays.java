@@ -1,6 +1,7 @@
 /*
     ============================================
-    🔹 PROGRAM: Print All Subarrays
+    🔹 PROGRAM: Print All Subarrays with
+       Maximum & Minimum Sum
     ============================================
 
     🔹 DEFINITION:
@@ -19,37 +20,60 @@
        [1,2,3]
 
     ============================================
+    🔹 ADDITIONAL CONCEPTS USED
+    ============================================
+
+    1) Maximum Subarray Sum
+       - Largest sum among all subarrays
+
+    2) Minimum Subarray Sum
+       - Smallest sum among all subarrays
+
+    ============================================
+    🔹 SPECIAL CONSTANTS USED
+    ============================================
+
+    Integer.MIN_VALUE
+       - Smallest possible integer value
+       - Used to initialize maximum sum
+
+    Integer.MAX_VALUE
+       - Largest possible integer value
+       - Used to initialize minimum sum
+
+    ============================================
     🔹 LOGIC USED
     ============================================
 
     This program uses 3 nested loops.
 
-    1) Outer Loop:
+    1) Outer Loop
        - Selects starting index
 
-    2) Middle Loop:
+    2) Middle Loop
        - Selects ending index
 
-    3) Inner Loop:
-       - Prints elements from start to end
+    3) Inner Loop
+       - Prints subarray elements
+       - Calculates subarray sum
 
     ============================================
     🔹 WORKING FLOW
     ============================================
 
-    Array = [1, 2, 3]
+    Example:
+       Array = [1, 2, 3]
 
-    i = 0
-        j = 0 → [1]
-        j = 1 → [1 2]
-        j = 2 → [1 2 3]
+    Subarrays and Sum:
+       [1]       = 1
+       [1,2]     = 3
+       [1,2,3]   = 6
+       [2]       = 2
+       [2,3]     = 5
+       [3]       = 3
 
-    i = 1
-        j = 1 → [2]
-        j = 2 → [2 3]
-
-    i = 2
-        j = 2 → [3]
+    Maximum Sum = 6
+    Minimum Sum = 1
 
     ============================================
     🔹 FORMULA
@@ -75,10 +99,11 @@
     🔹 REAL-LIFE USAGE
     ============================================
 
-    - Maximum subarray sum problems
-    - Sliding window algorithms
+    - Stock market analysis
+    - Maximum profit problems
+    - Data analysis
     - Competitive programming
-    - Data analysis problems
+    - Sliding window concepts
 
 */
 
@@ -90,6 +115,12 @@ public class PrintSubArrays {
         // Variable to count total subarrays
         int ts = 0;
 
+        // Stores maximum subarray sum
+        int maxsum = Integer.MIN_VALUE;
+
+        // Stores minimum subarray sum
+        int minsum = Integer.MAX_VALUE;
+
         // Outer loop selects starting index
         for (int i = 0; i < arr.length; i++) {
 
@@ -100,22 +131,48 @@ public class PrintSubArrays {
 
                 int end = j;
 
+                // Variable to store current subarray sum
+                int sum = 0;
+
                 // Inner loop prints subarray
+                // and calculates sum
                 for (int k = start; k <= end; k++) {
 
                     System.out.print(arr[k] + " ");
+
+                    // Adding elements to sum
+                    sum += arr[k];
                 }
 
-                // Move to next line after printing one subarray
+                // Printing subarray sum
+                System.out.print("= " + sum);
+
+                // Updating maximum sum
+                if (sum > maxsum) {
+                    maxsum = sum;
+                }
+
+                // Updating minimum sum
+                if (sum < minsum) {
+                    minsum = sum;
+                }
+
+                // Move to next line
                 System.out.println();
 
                 // Increasing subarray count
                 ts++;
             }
 
-            // Empty line for better formatting
+            // Empty line for formatting
             System.out.println();
         }
+
+        // Printing maximum subarray sum
+        System.out.println("Maximum sum of SubArray is = " + maxsum);
+
+        // Printing minimum subarray sum
+        System.out.println("Minimum sum of SubArray is = " + minsum);
 
         // Printing total number of subarrays
         System.out.println("Total no of SubArrays Printed = " + ts);
